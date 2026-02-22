@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yachika Yadav | Power Platform Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #1a3a6b;
+            --navy-light: #2554a0;
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --accent: #2563eb;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --surface: #ffffff;
+            --surface-2: #f8fafc;
+            --border: #e2e8f0;
+            --tag-bg: #eff6ff;
+            --tag-color: #1d4ed8;
+            --radius: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow: 0 4px 16px rgba(0,0,0,0.07);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.09);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--surface-2);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* ── Layout ── */
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* ── Header ── */
+        header {
+            background: linear-gradient(135deg, #eef4ff 0%, #f0f7ff 50%, #e8f0fe 100%);
+            border-bottom: 1px solid #c7d9f8;
+            color: var(--text);
+            padding: 64px 0 56px;
+        }
+
+        header .container {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .hero-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            line-height: 1.1;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .hero-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--blue);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: #475569;
+            max-width: 520px;
+            line-height: 1.75;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .badge {
+            background: #fff;
+            border: 1px solid #bfdbfe;
+            color: #1d4ed8;
+            padding: 5px 14px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        /* ── Contact sidebar ── */
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 4px;
+        }
+
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .contact-links a:hover { color: var(--blue); }
+
+        .contact-links .icon {
+            width: 16px;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* ── Main content ── */
+        main {
+            padding: 56px 0 80px;
+        }
+
+        /* ── Section ── */
+        .section {
+            margin-bottom: 56px;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.7rem;
+            color: var(--navy);
+            margin-bottom: 24px;
+        }
+
+        /* ── Card ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ── Stat strip ── */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 56px;
+        }
+
+        .stat {
+            background: var(--surface);
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.2rem;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* ── Skills ── */
+        .skill-group {
+            margin-bottom: 20px;
+        }
+
+        .skill-group-name {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--tag-bg);
+            color: var(--tag-color);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.855rem;
+            font-weight: 500;
+            border: 1px solid #bfdbfe;
+        }
+
+        /* ── Strengths ── */
+        .strength-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .strength-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.925rem;
+            color: var(--text);
+        }
+
+        .strength-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--blue);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        /* ── Certifications ── */
+        .cert-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cert-list li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.925rem;
+            color: var(--text);
+        }
+
+        .cert-badge {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: 4px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* ── Project Cards ── */
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .project-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .project-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            color: var(--navy);
+            line-height: 1.3;
+        }
+
+        .stack-label {
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 999px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .project-card p {
+            font-size: 0.925rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.75;
+        }
+
+        .project-section-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--text-muted);
+            margin: 20px 0 10px;
+        }
+
+        .project-card ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .project-card ul li {
+            font-size: 0.9rem;
+            color: var(--text);
+            padding-left: 16px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .project-card ul li::before {
+            content: '–';
+            position: absolute;
+            left: 0;
+            color: var(--blue-light);
+            font-weight: 600;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 4px;
+        }
+
+        .impact-item {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+
+        .impact-item strong {
+            display: block;
+            font-size: 1.2rem;
+            font-family: 'DM Serif Display', serif;
+            color: var(--navy);
+        }
+
+        .impact-item span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Divider ── */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 28px 0;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: #eef4ff;
+            border-top: 1px solid #c7d9f8;
+            color: #64748b;
+            text-align: center;
+            padding: 28px;
+            font-size: 0.875rem;
+        }
+
+        footer span { color: var(--blue); }
+
+        /* ── Responsive ── */
+        @media (max-width: 680px) {
+            header .container { grid-template-columns: 1fr; }
+            .contact-links { flex-direction: row; flex-wrap: wrap; }
+            .hero-name { font-size: 2.2rem; }
+            .strength-list { grid-template-columns: 1fr; }
+            .stats-strip { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div>
+            <p class="hero-title">Power Platform Developer · Mumbai, India</p>
+            <h1 class="hero-name">Yachika Yadav</h1>
+            <p class="hero-desc">
+                I design and build enterprise-grade solutions using Microsoft Power Platform,
+                with a strong focus on scalable app architecture, automation, and performance
+                optimization. Passionate about solving delegation challenges and custom component development.
+            </p>
+            <div class="hero-badges">
+                <span class="badge">Power Apps</span>
+                <span class="badge">Power Automate</span>
+                <span class="badge">Dataverse</span>
+                <span class="badge">PCF</span>
+                <span class="badge">Power BI</span>
+            </div>
+        </div>
+        <div class="contact-links">
+            <a href="https://linkedin.com/in/yachikayadav" target="_blank">
+                <span class="icon">in</span> LinkedIn
+            </a>
+            <a href="/cdn-cgi/l/email-protection#dda4bcbeb5b4b6bca4bcb9bcabecede8e99dbab0bcb4b1f3beb2b0">
+                <span class="icon">✉</span> Email
+            </a>
+            <a href="https://yachikayadav1054.github.io/" target="_blank">
+                <span class="icon">◎</span> Portfolio
+            </a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+
+        <!-- Stats -->
+        <div class="stats-strip">
+            <div class="stat">
+                <div class="stat-num">3+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">10+</div>
+                <div class="stat-label">Enterprise Apps Deployed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">350+</div>
+                <div class="stat-label">Hours Saved / Month</div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section">
+            <p class="section-label">Technical Skills</p>
+            <h2 class="section-title">Tech Stack</h2>
+            <div class="card">
+                <div class="skill-group">
+                    <p class="skill-group-name">Power Platform</p>
+                    <div class="tags">
+                        <span class="tag">Power Apps</span>
+                        <span class="tag">Power Automate</span>
+                        <span class="tag">Dataverse</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">ALM</span>
+                        <span class="tag">Copilot</span>
+                    </div>
+                </div>
+                <hr class="divider">
+                <div class="skill-group">
+                    <p class="skill-group-name">Custom Development</p>
+                    <div class="tags">
+                        <span class="tag">PCF</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                    </div>
+                </div>
+                <hr class="divider">
+                <div class="skill-group">
+                    <p class="skill-group-name">Integrations & Data</p>
+                    <div class="tags">
+                        <span class="tag">SQL Server</span>
+                        <span class="tag">SharePoint</span>
+                        <span class="tag">Office 365</span>
+                        <span class="tag">REST APIs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strengths -->
+        <div class="section">
+            <p class="section-label">What I Do Best</p>
+            <h2 class="section-title">Core Strengths</h2>
+            <div class="card">
+                <ul class="strength-list">
+                    <li>Solving delegation and performance challenges in large datasets</li>
+                    <li>Designing user-friendly, enterprise-grade Power Apps</li>
+                    <li>Building secure and scalable automated workflows</li>
+                    <li>Creating reusable custom components using PCF</li>
+                    <li>Translating business requirements into efficient technical solutions</li>
+                    <li>One-to-many data model management in low-code environments</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="section">
+            <p class="section-label">Microsoft Certified</p>
+            <h2 class="section-title">Certifications</h2>
+            <div class="card">
+                <ul class="cert-list">
+                    <li>
+                        <span class="cert-badge">PL-200</span>
+                        Power Platform Functional Consultant
+                    </li>
+                    <li>
+                        <span class="cert-badge">PL-300</span>
+                        Power BI Data Analyst
+                    </li>
+                    <li>
+                        <span class="cert-badge">PL-900</span>
+                        Power Platform Fundamentals
+                    </li>
+                    <li>
+                        <span class="cert-badge">AZ-900</span>
+                        Azure Fundamentals
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="section">
+            <p class="section-label">Featured Work</p>
+            <h2 class="section-title">Projects</h2>
+
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Corporate Action & Portfolio Management</h3>
+                    <span class="stack-label">Canvas App · Power Automate · SQL</span>
+                </div>
+                <p>
+                    Enterprise-grade Canvas PowerApps application to manage corporate actions and
+                    their associated portfolio records. Migrated from a legacy C# SharePoint on-prem
+                    application — business logic was reverse-engineered and rebuilt in a low-code
+                    environment while preserving all core functionality.
+                </p>
+
+                <p class="project-section-title">Business Impact</p>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <strong>~50%</strong>
+                        <span>Reduction in manual data entry</span>
+                    </div>
+                    <div class="impact-item">
+                        <strong>↑</strong>
+                        <span>Data integrity across operational teams</span>
+                    </div>
+                </div>
+
+                <p class="project-section-title">Key Features</p>
+                <ul>
+                    <li>Centralized landing page with searchable galleries for all corporate actions</li>
+                    <li>One-to-many relationship: one corporate action with multiple portfolio records</li>
+                    <li>Role-based access control with three distinct user roles</li>
+                    <li>Dynamic forms with validations and conditional field visibility</li>
+                    <li>Refresh and maintenance of portfolio records without data loss</li>
+                </ul>
+
+                <p class="project-section-title">Technical Highlights</p>
+                <ul>
+                    <li>Executed SQL Server stored procedures via Power Automate</li>
+                    <li>Processed and normalized backend data into PowerApps collections</li>
+                    <li>Converted collections into structured JSON payloads for persistence</li>
+                    <li>Implemented role-based logic to control screen, field, and action visibility</li>
+                </ul>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>New Hires & Employee Onboarding App</h3>
+                    <span class="stack-label">Model-Driven · Dataverse · Power Automate</span>
+                </div>
+                <p>
+                    A Model-Driven Power Platform application that streamlines the employee onboarding
+                    process, ensuring all tasks, approvals, and documentation are tracked efficiently
+                    with full auditability.
+                </p>
+
+                <p class="project-section-title">Business Impact</p>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <strong>50%</strong>
+                        <span>Reduction in manual onboarding steps</span>
+                    </div>
+                    <div class="impact-item">
+                        <strong>✓</strong>
+                        <span>Policy compliance via automated approvals</span>
+                    </div>
+                </div>
+
+                <p class="project-section-title">Key Features</p>
+                <ul>
+                    <li>Business Process Flow (BPF): Initiated → In Progress → Completed</li>
+                    <li>Automated task assignment based on role (HR, IT, Admin)</li>
+                    <li>Role-based dashboards for full visibility and accountability</li>
+                    <li>Audit trail maintained for all approvals and task completions</li>
+                </ul>
+
+                <p class="project-section-title">Technical Highlights</p>
+                <ul>
+                    <li>Built on Dataverse with Model-Driven App architecture</li>
+                    <li>Role-based security across HR, IT, and Admin teams</li>
+                    <li>Integration-ready with Power Automate for notifications and approvals</li>
+                </ul>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Multi-Select PCF Component</h3>
+                    <span class="stack-label">PCF · TypeScript · HTML · CSS</span>
+                </div>
+                <p>
+                    A reusable PowerApps Component Framework (PCF) control that enables searchable
+                    multi-selection with a chip-based interface — built for cases where standard
+                    PowerApps controls fall short.
+                </p>
+
+                <p class="project-section-title">Highlights</p>
+                <ul>
+                    <li>Implements real-time search and dynamic filtering for efficient selection</li>
+                    <li>Displays selected values as removable, interactive chips</li>
+                    <li>Optimized for performance with large datasets</li>
+                    <li>Reusable across both Canvas Apps and Model-Driven Apps</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>⭐ Always open to learning, collaboration, and solving challenging Power Platform problems. &nbsp;·&nbsp; <span>Yac
